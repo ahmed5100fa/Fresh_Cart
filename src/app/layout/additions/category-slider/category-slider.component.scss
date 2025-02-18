@@ -1,0 +1,17 @@
+h2 {
+  color: rgba(61, 92, 104);
+}
+
+.parent {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+}

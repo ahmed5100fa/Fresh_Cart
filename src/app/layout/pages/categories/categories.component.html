@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <div class="row g-4">
+    @for (category of categories; track $index) {
+      <div class="col-md-3">
+        <div class="card" [routerLink]="['/proCategory', category._id]" >
+          <img [src]="category.image" class="card-img-top" alt="{{ category.name }}">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ category.name }}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

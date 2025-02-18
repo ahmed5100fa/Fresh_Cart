@@ -1,0 +1,65 @@
+<div class="container h-75 ">
+<div class="row my-5">
+
+    <div class="w-50 m-auto pb-3">
+      <div class=" d-flex justify-content-center align-items-center">
+        <div class="image w-25">
+          <img src="./images/Logo.png" class="w-100 m-auto" alt="">
+        </div>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+        <div class="row mb-4">
+                    <!-- Email input -->
+                    <div class="mb-4">
+                      <input type="email" id="formEmail" class="form-control" placeholder="Enter your email" formControlName="email"/>
+                      @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+                        <div class="alert alert-danger mt-2">
+                          @if(loginForm.get('email')?.errors?.['required']){
+                            Email is required.
+                          }@else if(loginForm.get('email')?.errors?.['email']){
+                            Email is not valid.
+                          }
+                        </div>
+                      }
+                    </div>
+
+                    <div class="mb-4">
+                      <input type="password" id="formPassword" class="form-control" placeholder="Enter your password" formControlName="password"/>
+                      @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+                        <div class="alert alert-danger mt-2">
+                          @if(loginForm.get('password')?.errors?.['required']){
+                            Password is required.
+                          }@else if(loginForm.get('password')?.errors?.['pattern'] || loginForm.get('password')?.errors?.['minlength']){
+                            Password must meet the following criteria:
+                            <ul>
+                              <li>At least one lowercase letter (a-z)</li>
+                              <li>At least one uppercase letter (A-Z)</li>
+                              <li>At least one number (0-9)</li>
+                              <li>At least one special character ($!%*?&)</li>
+                              <li>Minimum 8 characters in length</li>
+                            </ul>
+                          }
+                        </div>
+                      }
+                    </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-secondary btn-block w-100 mb-3" [disabled]="loginForm.invalid">
+            @if (isLoading) {
+              <span><i class="fa fa-spinner fa-spin"></i></span>  Login
+            }@else {
+              Login
+            }
+          </button>
+          <p class="text-muted">
+            Don't have an account? <a routerLink="/register" class="text-decoration-underline">Sign up</a>
+          </p>
+          <p class="text-muted">
+            Forgot your password? <a routerLink="/forgotPassword" class="text-decoration-underline">Reset it here</a>
+          </p>
+                  </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

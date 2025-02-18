@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <div class="row g-4 mb-3">
+    @for (br of brands; track $index) {
+      <div class="col-md-3">
+        <div class="card" [routerLink]="['/proBrand', br._id]" >
+          <img [src]="br.image" class="card-img-top" alt="{{ br.name }}">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ br.name }}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

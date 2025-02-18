@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row my-3">
+
+    <div class="row my-3 d-flex justify-content-center">
+      <div class="col-md-9 col-sm-12 m-0 p-0">
+        <app-slider></app-slider>
+      </div>
+      <div class="col-md-3 m-0 p-0 col-sm-12">
+        <div class="row h-100">
+          <div class="col-12">
+            <img src="./images/slider-image-3.jpeg" class="w-100 side1" alt="">
+          </div>
+          <div class="col-12">
+            <img src="./images/slider-image-2.jpeg" class="w-100 side1 two" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-category-slider></app-category-slider>
+
+    <div class="mt-3">
+      <div class="form-group w-50 m-auto">
+        <input type="search" class="form-control" [(ngModel)]="searchWord" id="exampleInputPassword1" placeholder="Search....">
+      </div>
+    </div>
+
+    @if(dataList){
+
+    @for (item of dataList |search: searchWord; track item._id) {
+      <div class="col-xl-3 col-lg-4 my-3 parent col-md-6">
+        <div class="card bg-light rounded-3 p-3" >
+          <div [routerLink]="['/details', item._id]">
+            <div class="image">
+              <img [src]="item.imageCover" class="w-100" alt="{{ item.title }}">
+            </div>
+            <div class="content">
+              <h5 class="mt-3">{{ item.title.split(' ').slice(0, 3).join(' ') }}</h5>
+              <div class="d-flex mt-4 align-items-center">
+                <i class="fa fa-star text-warning me-1"></i>
+                <span>{{ item.ratingsAverage }}</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mt-3">
+                <span class="price">${{ item.price }}</span>
+                <span class="sale text-secondary">${{ item.price + 100 }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="button mt-1">
+            <button (click)="addProductToCart(item._id)" class="btn w-100 btn-outline-secondary">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    }
+    }
+  </div>
+</div>

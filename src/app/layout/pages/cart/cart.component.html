@@ -1,0 +1,34 @@
+@if (data)
+{
+  <div class="container py-4">
+    <div class="row parent">
+        <div class="col-md-8">
+          <i (click)="clearProductFromCart()" class="fa fa-x position-relative top-0 start-0 btn btn-outline-danger mb-3 fw-bolder"></i>
+        @for (products of data.products; track $index) {
+          <div class="cart-item">
+            <img [src]="products.product.imageCover" alt="Product">
+            <div class="ms-3 flex-grow-1">
+                <h5>{{products.product.title}}</h5>
+                <div class="d-flex align-items-center">
+                    <button (click)="updateLoggedUserCount(products.product._id , products.count = products.count - 1)" class=" py-0 btn btn-outline-secondary">-</button>
+                    <span class="mx-2">{{products.count}}</span>
+                    <button (click)="updateLoggedUserCount(products.product._id , products.count = products.count + 1)"  class=" py-0 btn btn-outline-secondary">+</button>
+                </div>
+            </div>
+            <strong>${{products.price}}</strong>
+            <i (click)="removeSpecificProductFromCart(products.product._id)" class="ms-3 fa fa-trash  btn btn-outline-danger"></i>
+        </div>
+        }
+        </div>
+        <div class="col-md-4">
+            <div class="cart-summary">
+                <h4>Total: <strong>${{data.totalCartPrice}}</strong></h4>
+                <button [routerLink]="['/shippingAddress', CartId]" class="btn btn-outline-secondary w-100 mt-2">
+                  Checkout
+                </button>
+              </div>
+        </div>
+    </div>
+  </div>
+
+}

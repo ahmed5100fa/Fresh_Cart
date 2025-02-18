@@ -1,0 +1,108 @@
+<div class="container">
+<div class="row">
+    <div class="w-75 m-auto pb-3">
+      <div class=" d-flex justify-content-center align-items-center">
+        <div class="image w-25">
+          <img src="./images/Logo.png" class="w-100 m-auto" alt="">
+        </div>
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="SubmitRegisterForm()">
+        <div class="row mb-4">
+          <!-- Name input -->
+          <div class="mb-4">
+            <input type="text" id="formName" class="form-control" placeholder="Enter your name" formControlName="name" />
+            @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched){
+              <div class="alert alert-danger mt-2">
+                @if(registerForm.get('name')?.errors?.['required']){
+                  Name is required.
+                }@else if(registerForm.get('name')?.errors?.['minlength'] || registerForm.get('name')?.errors?.['maxlength']){
+                  Name must be between 3 and 20 characters.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Email input -->
+          <div class="mb-4">
+            <input type="email" id="formEmail" class="form-control" placeholder="Enter your email" formControlName="email"/>
+            @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched){
+              <div class="alert alert-danger mt-2">
+                @if(registerForm.get('email')?.errors?.['required']){
+                  Email is required.
+                }@else if(registerForm.get('email')?.errors?.['email']){
+                  Email is not valid.
+                }
+              </div>
+            }
+          </div>
+
+          <div class="row p-0 m-0">
+            <!-- Password input -->
+            <div class="col-md-6 col-sm-12 mb-4">
+              <input type="password" id="formPassword" class="form-control" placeholder="Enter your password" formControlName="password"/>
+              @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched){
+                <div class="alert alert-danger mt-2">
+                  @if(registerForm.get('password')?.errors?.['required']){
+                    Password is required.
+                  }@else if(registerForm.get('password')?.errors?.['pattern'] || registerForm.get('password')?.errors?.['minlength']){
+                    Password must meet the following criteria:
+                    <ul>
+                      <li>At least one lowercase letter (a-z)</li>
+                      <li>At least one uppercase letter (A-Z)</li>
+                      <li>At least one number (0-9)</li>
+                      <li>At least one special character ($!%*?&)</li>
+                      <li>Minimum 8 characters in length</li>
+                    </ul>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Re-enter Password input -->
+            <div class="col-md-6 col-sm-12 mb-4">
+              <input type="password" id="formRePassword" class="form-control" placeholder="Re-enter your password" formControlName="rePassword"/>
+              @if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched){
+                <div class="alert alert-danger mt-2">
+                  @if(registerForm.get('rePassword')?.errors?.['required']){
+                    Re-enter Password is required.
+                  }@else{
+                    Passwords do not match.
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone input -->
+        <div class="mb-4">
+          <input type="tel" id="formPhone" class="form-control" placeholder="Enter your phone number" formControlName="phone"/>
+          @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+            <div class="alert alert-danger mt-2">
+              @if(registerForm.get('phone')?.errors?.['required']){
+                Phone number is required.
+              }@else if(registerForm.get('phone')?.errors?.['pattern']){
+                Please enter a valid Egyptian phone number.
+              }
+            </div>
+          }
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-secondary btn-block w-100 mb-3" [disabled]="registerForm.invalid">
+            @if(isLoading){
+              <i class="fas fa-spinner fa-spin"></i>  Create Account
+            }@else {
+              Create Account
+            }
+          </button>
+          <p class="text-muted">Already have an account? <a routerLink="/login" class="text-decoration-underline">Log In</a></p>
+        </div>
+      </form>
+
+
+
+
+    </div>
+  </div>
+</div>

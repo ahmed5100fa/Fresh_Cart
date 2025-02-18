@@ -1,0 +1,27 @@
+@if (ResetCode) {
+  <form [formGroup]="resetCodeForm" (ngSubmit)="submitCodeForm()">
+    <div class="row mb-4">
+      <div class="mb-4">
+        <input type="text" id="formCode" class="form-control" placeholder="Enter The Code" formControlName="resetCode"/>
+        @if(resetCodeForm.get('resetCode')?.errors && resetCodeForm.get('resetCode')?.touched){
+          <div class="alert alert-danger mt-2">
+            @if(resetCodeForm.get('resetCode')?.errors?.['required']){
+              Code is required.
+            }@else if(resetCodeForm.get('resetCode')?.errors?.['pattern']){
+              Code is not valid.
+            }
+          </div>
+        }
+      </div>
+      <button type="submit" class="btn btn-outline-secondary btn-block w-100 mb-3" [disabled]="resetCodeForm.invalid">
+        @if (isLoading) {
+          <span><i class="fa fa-spinner fa-spin"></i></span>  Send Code
+        }@else {
+          Send Code
+        }
+      </button>
+    </div>
+  </form>
+} @else if (resetNewPassword) {
+  <app-new-password></app-new-password> 
+}

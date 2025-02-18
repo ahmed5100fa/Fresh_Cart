@@ -1,0 +1,29 @@
+
+.slide1{
+  height: 400px;
+  object-fit: cover;
+}
+
+.side1 {
+  min-height: 200px;
+  object-fit: cover;
+}
+
+.two{
+  position: relative;
+  top: -30px;
+}
+
+@media (min-width: 768px) {
+  .two{
+    position: relative;
+    top: -17px;
+  }
+}
+
+@media (min-width: 992px) {
+  .two{
+    position: relative;
+    top: -30px;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="container product-container">
+  <div class="row product-card">
+      <div class="col-md-6">
+          <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                @for (item of productDetails.images; track $index) {
+                  <div class="carousel-item active rounded-3">
+                    <img [src]="item" class="d-block w-100 rounded-3" alt="Product Image 1">
+                </div>
+                }
+              </div>
+              <button title="btn" class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+              </button>
+              <button title="btn" class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <h4><strong>{{productDetails.title}}</strong></h4>
+          <h5 class="text-danger">${{productDetails.price}} <del class="text-muted">${{productDetails.price + 100}}</del></h5>
+          <p>⭐ {{productDetails.ratingsAverage}} ({{productDetails.ratingsQuantity}} reviews)</p>
+          <p>{{productDetails.description}}</p>
+          <p><strong>Brand:</strong> {{productDetails.brand.name}}</p>
+          <p><strong>Category:</strong> {{productDetails.category.name}}</p>
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" class="form-control w-25 d-inline" value="1">
+          <div class="d-flex align-items-center mt-3">
+            <button class="btn btn-outline-secondary w-75" (click)="addProductToCart(productDetails?._id || '')">
+              Add to Cart
+            </button>
+
+
+            <button *ngIf="productDetails?._id"title="Add to Wishlist"(click)="addProductToWishList(productDetails._id)"
+              class="btn ms-2 text-danger heart">
+            <i class="fa-regular fa-heart"></i>
+            </button>
+
+          </div>
+      </div>
+  </div>
+</div>

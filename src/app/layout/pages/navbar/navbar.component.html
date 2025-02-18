@@ -1,0 +1,86 @@
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-5 navbar-light bg-light">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon border-0 fs-6"></span>
+      </button>
+
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img
+          class="fs-1"
+          src="images/Logo.png"
+          alt="Logo"
+          height="50"
+        />
+        <h1 class="fs-4">FreshCart</h1>
+      </a>
+
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active"  aria-current="page" routerLink="home">Home</a>
+          </li>
+          @if(isLogin.getValue()){
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="cart">Cart</a>
+            </li>
+          }
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="category">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="brand">Brand</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <div class="cart-container me-4 position-relative">
+          <i class="fa-solid fa-cart-shopping cart-icon"></i>
+          @if(cartNo > 0){
+            <span class="cart-badge">{{ cartNo }}</span>
+          }
+        </div>
+
+        @if(isLogin.getValue()){
+        <!-- wishList -->
+        <div class="wish me-4 fs-5" routerLink="wishList">
+          <i class="fa-solid fa-heart wish-icon text-danger"></i>
+        </div>
+        }
+        <!-- User avatar dropdown -->
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle pers d-flex align-items-center text-decoration-none hidden-arrow"
+            href="#"
+            id="avatarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <i class="fa-regular fa-circle-user fs-4 rounded-circle"></i>
+
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+            @if(!isLogin.getValue()){
+              <li><a class="dropdown-item" routerLink="login">SignIn</a></li>
+              <li><a class="dropdown-item" routerLink="register">SignUp</a></li>
+            }@else {
+              <li><a class="dropdown-item" (click)="logout()" routerLink="logout">Logout</a></li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

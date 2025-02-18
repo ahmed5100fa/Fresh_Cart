@@ -1,0 +1,68 @@
+<div class="container h-75">
+  <div class="row my-5">
+    <div class="w-50 m-auto pb-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="image w-25">
+          <img src="./images/Logo.png" class="w-100 m-auto" alt="Logo">
+        </div>
+      </div>
+      <form [formGroup]="shippingAddressForm" (ngSubmit)="submitShipingAddressForm()">
+        <div class="row mb-4">
+
+          <!-- Address input -->
+          <div class="mb-4">
+            <input type="text" id="formDetails" class="form-control" placeholder="Enter your address details" formControlName="details"/>
+            @if(shippingAddressForm.get('details')?.errors && shippingAddressForm.get('details')?.touched){
+              <div class="alert alert-danger mt-2 d-flex align-items-center">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                @if(shippingAddressForm.get('details')?.errors?.['required']){
+                  <span> Address details are required. </span>
+                }@else if(shippingAddressForm.get('details')?.errors?.['minlength']){
+                  <span> Address must be at least 5 characters long. </span>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Phone input -->
+          <div class="mb-4">
+            <input type="text" id="formPhone" class="form-control" placeholder="Enter your phone number" formControlName="phone"/>
+            @if(shippingAddressForm.get('phone')?.errors && shippingAddressForm.get('phone')?.touched){
+              <div class="alert alert-danger mt-2 d-flex align-items-center">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                @if(shippingAddressForm.get('phone')?.errors?.['required']){
+                  <span> Phone number is required. </span>
+                }@else if(shippingAddressForm.get('phone')?.errors?.['pattern']){
+                  <span> Please enter a valid phone number (e.g. 01123456789). </span>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- City input -->
+          <div class="mb-4">
+            <input type="text" id="formCity" class="form-control" placeholder="Enter your city" formControlName="city"/>
+            @if(shippingAddressForm.get('city')?.errors && shippingAddressForm.get('city')?.touched){
+              <div class="alert alert-danger mt-2 d-flex align-items-center">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                @if(shippingAddressForm.get('city')?.errors?.['required']){
+                  <span> City name is required. </span>
+                }@else if(shippingAddressForm.get('city')?.errors?.['minlength']){
+                  <span> City name must be at least 3 characters long. </span>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Submit button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-outline-secondary btn-block w-100 mb-3" [disabled]="shippingAddressForm.invalid">
+              Order
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

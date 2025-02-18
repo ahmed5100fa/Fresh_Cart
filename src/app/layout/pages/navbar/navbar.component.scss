@@ -1,0 +1,40 @@
+h1{
+  color: rgba(61, 92, 104, 255);
+}
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon {
+  font-size: 16px;
+  color: rgba(61, 92, 104);
+  cursor: pointer;
+}
+
+.pers{
+  padding: 0;
+  color: rgba(61, 92, 104);
+}
+
+.wish{
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: rgba(61, 92, 104);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
