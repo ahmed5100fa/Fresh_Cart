@@ -19,7 +19,9 @@ export const routes: Routes = [
   { path: 'allOrder/:Userid', loadComponent : () => import('./layout/additions/all-orders/all-orders.component').then((c) => c.AllOrdersComponent), title: 'allOrders' },
   { path: 'wishList', loadComponent : () => import('./layout/additions/wish-list/wish-list.component').then((c) => c.WishListComponent) , canActivate: [authGuard] , title: 'WishList' },
   { path: 'proCategory/:catId', loadComponent : () => import('./layout/additions/prodep-cat/prodep-cat.component').then((c) => c.ProdepCatComponent), title: 'productCategory' },
-  { path: 'proBrand/:brandId', loadComponent : () => import('./layout/pages/brand/brand.component').then((c) => c.BrandComponent), title: 'productBrand' },
-  { path: 'details/:id', loadComponent : () => import('./layout/additions/prodeponbrand/prodeponbrand.component').then((c) => c.ProdeponbrandComponent), title: 'Product Details' },
+  { path: 'proBrand/:brandId', loadComponent : () => import('./layout/additions/prodeponbrand/prodeponbrand.component').then((c) => c.ProdeponbrandComponent), title: 'productBrand' },
+  { path: 'details/:id', loadComponent : () => import('./layout/additions/product-details/product-details.component').then((c) => c.ProductDetailsComponent), title: 'Product Details' },
   { path: '**', component: NotFoundComponent, title: 'Not Found' },
 ];
+
+
